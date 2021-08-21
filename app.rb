@@ -19,3 +19,7 @@ end
 get '/projects' do
   erb :projects
 end
+
+get '/elements' do
+  erb :elements
+end

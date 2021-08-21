@@ -11,7 +11,7 @@ p {
 
 nav {
   border: 2px solid green;
-  padding: 5px;
+  text-align: center;
 }
 
 footer {
@@ -19,3 +19,24 @@ footer {
   padding: 10px;
   text-align: center;
 }
+
+nav li {
+  border: 2px solid red;
+  display: inline;
+  padding: 10px;
+}
+
+nav ul {
+  padding: 0px;
+}
+
+table {
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+td {
+  border: 2px solid red;
+  padding: 3px;
+}
+
