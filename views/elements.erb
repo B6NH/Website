@@ -219,6 +219,16 @@
                     "5s","4d","5p","6s",
                     "4f","5d","6p","7s"];
 
+  // Square size
+  const rectSize = 14;
+
+  // Graphical configuration square position
+  const posY = 20;
+
+  // Arrow colors
+  const upArrowColor = "#ff0000";
+  const downArrowColor = "#000000";
+
   // ------------------------------------------------------
 
   function orbSort(orbitals){
@@ -274,15 +284,31 @@
 
   }
 
-  function drawGraphicalConfiguration(confArr){
+  // Draw arrows in group of squares
+  function drawArrows(color,rectCount,arrowX,n,ctx){
+
+    ctx.fillStyle = color;
+
+    while(n>0&&rectCount>0){
+      ctx.beginPath();
+      ctx.fillRect(arrowX,posY,rectSize/2,rectSize);
+      ctx.stroke();
+      n--;
+      rectCount--;
+      arrowX += rectSize;
+    }
+
+    return n;
+
+  }
+
+  function drawGraphicalConfiguration(confArr,n){
 
     let can = document.getElementById("graphicconf");
     let ctx = can.getContext("2d");
     ctx.fillStyle = "#ffa099";
     ctx.fillRect(0, 0, 800, 60);
 
-    const posY = 20;
-    const rectSize = 14;
     let posX = 10;
 
     for(let i=0;i<confArr.length;i++){
@@ -307,6 +333,9 @@
           break;
       }
 
+      const initX = posX;
+
+      // Draw group of empty squares
       for(let j=0;j<squares;j++){
         ctx.beginPath();
         ctx.rect(posX,posY,rectSize,rectSize);
@@ -314,6 +343,13 @@
         posX += rectSize;
       }
 
+      // Up Arrows
+      n = drawArrows(upArrowColor,squares,initX,n,ctx);
+
+      // Down Arrows
+      n = drawArrows(downArrowColor,squares,initX+rectSize/2,n,ctx);
+
+      // Position of next square group
       posX += rectSize;
 
     }
@@ -353,7 +389,7 @@
 
     // Show results graphically
     drawAtomModel(confArr);
-    drawGraphicalConfiguration(confArr);
+    drawGraphicalConfiguration(confArr,n);
 
   }
 
