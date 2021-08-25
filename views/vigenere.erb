@@ -1,0 +1,115 @@
+<h1>Vigenere Cipher</h1>
+
+<h2>Encipher</h2>
+
+<div>
+  <label>Plaintext:</label>
+  <input id="plaintext"></input>
+</div>
+
+<br>
+
+<div>
+  <label>Key:</label>
+  <input id="key"></input>
+</div>
+
+<br>
+
+<div>
+  <button type="button" onclick="encipher()">Encipher</button>
+</div>
+
+<h4>Ciphertext</h4>
+
+<div id="ciphertext"></div>
+
+<h2>Decipher</h2>
+
+<div>
+  <label>Ciphertext:</label>
+  <input id="cipherTextInput"></input>
+</div>
+
+<br>
+
+<div>
+  <label>Key:</label>
+  <input id="cipherTextKey"></input>
+</div>
+
+<br>
+
+<div>
+  <button type="button" onclick="decipher()">Decipher</button>
+</div>
+
+<h4>Plaintext</h4>
+
+<div id="plainTextOutput"></div>
+
+<br>
+
+<script>
+
+  // --------------------------------------------
+
+  const asciiA = 65;
+  const nLetters = 26;
+
+  // --------------------------------------------
+
+  function getVal(id){
+    return document.getElementById(id).value.toUpperCase();
+  }
+
+  function keyToShifts(key,type){
+
+    let shifts = Array(key.length);
+    let m = 0==type ? 1 : -1;
+
+    for(let i=0;i<key.length;i++){
+      shifts[i] = m*(key[i].charCodeAt(0) - asciiA);
+    }
+
+    return shifts;
+
+  }
+
+  // Type: 0 - encipher, 1 - decipher
+  function translate(text,key,type){
+
+    let result = ""; let keyIndex = 0;
+    let shifts = keyToShifts(key,type);
+
+    for(let i=0;i<text.length;i++){
+
+      // Make '%' work like 'mod' for negative numbers
+      result +=
+        String.fromCharCode(((text[i].charCodeAt(0) +
+                              shifts[keyIndex] - asciiA) % nLetters + nLetters) %
+                              nLetters + asciiA);
+
+      if(++keyIndex==shifts.length){ keyIndex = 0; }
+
+    }
+
+    return result;
+
+  }
+
+  function encipher(){
+    document.getElementById("ciphertext").innerHTML =
+      translate(getVal("plaintext"),
+                getVal("key"),
+                0);
+  }
+
+  function decipher(){
+    document.getElementById("plainTextOutput").innerHTML =
+      translate(getVal("cipherTextInput"),
+                getVal("cipherTextKey"),
+                1);
+  }
+
+</script>

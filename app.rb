@@ -23,3 +23,11 @@ end
 get '/elements' do
   erb :elements
 end
+
+get '/vigenere' do
+  erb :vigenere
+end
+
+get '/cryptography' do
+  erb :cryptography
+end
