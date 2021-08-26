@@ -31,3 +31,7 @@ end
 get '/cryptography' do
   erb :cryptography
 end
+
+get '/columncipher' do
+  erb :columncipher
+end

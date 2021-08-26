@@ -1,0 +1,165 @@
+<h1>Column Transposition Cipher</h1>
+
+<h2>Encipher</h2>
+
+<div>
+  <label>Plaintext:</label>
+  <input id="plainText">
+</div>
+
+<br>
+
+<div>
+  <label>Rows:</label>
+  <input id="rows" type="number" size="4">
+</div>
+
+<br>
+
+<div>
+  <label>Columns:</label>
+  <input id="columns" type="number" size="4">
+</div>
+
+<br>
+
+<div>
+  <label>Key:</label>
+  <input id="key">
+</div>
+
+<br>
+
+<div>
+  <button type="button" onclick="encipher()">Encipher</button>
+</div>
+
+<h4>Ciphertext</h4>
+
+<div id="cipherText"></div>
+
+<h2>Decipher</h2>
+
+<div>
+  <label>Ciphertext:</label>
+  <input id="cipherTextInput">
+</div>
+
+<br>
+
+<div>
+  <label>Rows:</label>
+  <input id="rowsDecipher" type="number" size="4">
+</div>
+
+<br>
+
+<div>
+  <label>Columns:</label>
+  <input id="columnsDecipher" type="number" size="4">
+</div>
+
+<br>
+
+<div>
+  <label>Key:</label>
+  <input id="keyDecipher">
+</div>
+
+<br>
+
+<div>
+  <button type="button" onclick="decipher()">Decipher</button>
+</div>
+
+<h4>Plaintext</h4>
+
+<div id="plainTextOutput"></div>
+
+<br>
+
+<script>
+
+  // --------------------------------------------
+
+  const keyMatchColumn = "Key length doesn't match number of columns";
+  const invalidKey = "Key must not contain duplicates";
+
+  // --------------------------------------------
+
+  function checkKey(columns,key){
+
+    if(columns!=key.length){
+      alert(keyMatchColumn); return false;
+    }
+
+    for(let i=1;i<=key.length;i++){
+      if(!key.includes(i)){
+        alert(invalidKey);
+        return false;
+      }
+    }
+
+    return true;
+
+  }
+
+  function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  function getVal(id){
+    return document.getElementById(id).value;
+  }
+
+  function translate(text,rows,cols,key){
+
+    let result = "";
+    for(let i=0;i<rows;i++){
+      for(let j=0;j<cols;j++){
+        let index = i * cols + key[j];
+        result += index < text.length ? text[index] :
+                  String.fromCharCode(randomNumber(65,91));
+      }
+    }
+
+    return result;
+
+  }
+
+  function encipher(){
+
+    let rows = getVal("rows");
+    let columns = getVal("columns");
+    let key = getVal("key");
+
+    if(!checkKey(columns,key)){ return; }
+
+    // Subtract 1 from key values
+    let numKey = Array(columns);
+    for(let i=0;i<columns;i++){ numKey[i] = key[i] - 1; }
+
+    document.getElementById("cipherText").innerHTML =
+      translate(getVal("plainText").toUpperCase(),rows,columns,numKey);
+
+  }
+
+  function decipher(){
+
+    let rows = getVal("rowsDecipher");
+    let columns = getVal("columnsDecipher");
+    let key = getVal("keyDecipher");
+
+    if(!checkKey(columns,key)){ return; }
+
+    // Create inverse key
+    let inverse = Array(key.length);
+    for(let i=0;i<key.length;i++){ inverse[key[i]-1] = i; }
+
+    document.getElementById("plainTextOutput").innerHTML =
+      translate(getVal("cipherTextInput").toUpperCase(),rows,columns,inverse);
+
+  }
+
+</script>
+
