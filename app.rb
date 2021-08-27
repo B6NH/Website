@@ -4,10 +4,6 @@ get '/' do
   erb :index
 end
 
-get '/algorithms' do
-  erb :algorithms
-end
-
 get '/mathematics' do
   erb :mathematics
 end
@@ -24,14 +20,23 @@ get '/elements' do
   erb :elements
 end
 
-get '/vigenere' do
-  erb :vigenere
-end
-
 get '/cryptography' do
   erb :cryptography
 end
 
-get '/columncipher' do
-  erb :columncipher
+get '/column_cipher' do
+  erb :column_cipher
 end
+
+get '/vigenere_cipher' do
+  erb :vigenere_cipher
+end
+
+get '/game_programming' do
+  erb :game_programming
+end
+
+get '/discrete' do
+  erb :discrete
+end
+

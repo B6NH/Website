@@ -23,7 +23,8 @@ footer {
 nav li {
   border: 2px solid red;
   display: inline;
-  padding: 10px;
+  padding: 5px;
+  font-size:17px;
 }
 
 nav ul {
