@@ -40,3 +40,7 @@ get '/discrete' do
   erb :discrete
 end
 
+get '/vectors' do
+  erb :vectors
+end
+
