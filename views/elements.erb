@@ -1,5 +1,5 @@
 
-<h1>Elements</h1>
+<h1>Chemical Elements</h1>
 
 <table id="maintable">
   <tr>
@@ -222,6 +222,9 @@
   // Square size
   const rectSize = 14;
 
+  // Radius of electron circle
+  const electronRadius = 5;
+
   // Graphical configuration square position
   const posY = 20;
 
@@ -229,7 +232,40 @@
   const upArrowColor = "#ff0000";
   const downArrowColor = "#000000";
 
+  // Atom model and configuration background color
+  const backgroundColor = "#ffa099";
+
+  const fullAngle = 2 * Math.PI;
+
+  // Distance between shells
+  const shellDistance = 15;
+
   // ------------------------------------------------------
+
+  function addEvents(){
+    document.querySelector('#maintable').addEventListener('click', (ev) => {
+      const x = ev.target.cellIndex;
+      const y = ev.target.parentElement.rowIndex;
+      if (x !== undefined && y !== undefined) {
+        console.log(x, y);
+      }
+    });
+  }
+
+  function pointsOnCircle(numPoints,radius) {
+
+    let angleBetween = fullAngle / numPoints;
+    let points = Array(numPoints);
+
+    let angle = 0;
+    for(let i=0;i<numPoints;i++){
+      points[i] = [Math.cos(angle)*radius,Math.sin(angle)*radius];
+      angle += angleBetween;
+    }
+
+    return points;
+
+  }
 
   function orbSort(orbitals){
 
@@ -270,17 +306,17 @@
 
   function numShells(conf){
 
-    let currentShell = 1;
-    let shells = 1;
+    //let currentShell = 1;
+    //let shells = 1;
 
-    for(let i=0;i<conf.length;i++){
-      if(conf[i][0]!=currentShell){
-        currentShell = conf[i][0];
-        shells++;
-      }
-    }
+    //for(let i=0;i<conf.length;i++){
+    //  if(conf[i][0]!=currentShell){
+    //    currentShell = conf[i][0];
+    //    shells++;
+    //  }
+    //}
 
-    return shells;
+    return conf[conf.length-1][0];
 
   }
 
@@ -306,7 +342,7 @@
 
     let can = document.getElementById("graphicconf");
     let ctx = can.getContext("2d");
-    ctx.fillStyle = "#ffa099";
+    ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, 800, 60);
 
     let posX = 10;
@@ -357,15 +393,40 @@
   }
 
   function drawAtomModel(confArr){
+
+    const shells = numShells(confArr);
+    const atomX = 100;
+    const atomY = 100;
+
     let can = document.getElementById("atommodel");
     let ctx = can.getContext("2d");
-    ctx.fillStyle = "#ffa099";
+    ctx.fillStyle = backgroundColor;
+
+    // Draw atom background
     ctx.fillRect(0, 0, 200, 200);
-    const shells = numShells(confArr);
+
+    // Draw circles for shells
     for(let i=1;i<=shells;i++){
+
+      // Radius of current shell
+      let radius = i * shellDistance;
+
+      // Draw shell
       ctx.beginPath();
-      ctx.arc(100, 100, i*15, 0, 2 * Math.PI);
+      ctx.arc(atomX, atomY, radius, 0, fullAngle);
       ctx.stroke();
+
+      // Get electron positions
+      let points = pointsOnCircle(5,radius);
+
+      // Draw electrons on shell
+      for(let j=0;j<points.length;j++){
+        ctx.beginPath();
+        ctx.arc(points[j][0]+atomX, points[j][1]+atomY,
+                electronRadius, 0, fullAngle);
+        ctx.stroke();
+      }
+
     }
   }
 
@@ -395,7 +456,11 @@
 
   // ------------------------------------------------------
 
-  main();
+  //let t0 = performance.now();
+  addEvents(); main();
+  //let t1 = performance.now();
+
+  //console.log(t1 - t0);
 
   // ------------------------------------------------------
 
