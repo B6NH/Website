@@ -32,15 +32,19 @@ get '/vigenere_cipher' do
   erb :vigenere_cipher
 end
 
-get '/game_programming' do
-  erb :game_programming
-end
-
 get '/discrete' do
   erb :discrete
 end
 
 get '/vectors' do
   erb :vectors
+end
+
+get '/physics' do
+  erb :physics
+end
+
+get '/graphics3d' do
+  erb :graphics3d
 end
 
