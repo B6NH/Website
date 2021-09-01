@@ -48,3 +48,12 @@ get '/graphics3d' do
   erb :graphics3d
 end
 
+get '/tamagotchi' do
+  erb :tamagotchi
+end
+
+get '/miscellaneous' do
+  erb :miscellaneous
+end
+
+

@@ -1,1 +1,29 @@
 <h1>3D Graphics</h1>
+
+<h3>Rendering function</h3>
+
+
+<p>Function that maps point in 3D space to 2D screen.</p>
+
+<pre><code>procedure render(point,observerPosition,observerVector,observerUp,fieldOfView,h)
+
+  // Right side of observer
+  observerRight = crossProduct(observerUp,observerVector)
+
+  // Vector from observer position to point
+  v = point - observerPosition
+
+  // Component of v in direction of observerVector (unit vector)
+  z = dotProduct(v,observerVector)
+
+  // Distance between observer and screen
+  d = h * tan(fov)
+
+  x = d * dotProduct(v,observerRight) / z
+  y = d * dotProduct(v,observerUp) / z
+
+  // Position on 2D screen
+  return [x,-y]
+
+end
+</code></pre>
