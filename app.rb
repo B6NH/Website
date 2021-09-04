@@ -56,4 +56,20 @@ get '/miscellaneous' do
   erb :miscellaneous
 end
 
+get '/unicon' do
+  erb :unicon
+end
+
+get '/tcl' do
+  erb :tcl
+end
+
+get '/rexx' do
+  erb :rexx
+end
+
+get '/nial' do
+  erb :nial
+end
+
 
