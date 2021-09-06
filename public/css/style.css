@@ -39,6 +39,12 @@ table {
 td {
   border: 2px solid red;
   padding: 5px;
+  font-size:16px;
+}
+
+#maintable td {
+  padding: 1px;
+  font-size:13.6px;
 }
 
 pre {
