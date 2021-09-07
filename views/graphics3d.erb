@@ -2,7 +2,6 @@
 
 <h3>Rendering function</h3>
 
-
 <p>Function that maps point in 3D space to 2D screen.</p>
 
 <pre><code>procedure render(point,observerPosition,observerVector,observerUp,fieldOfView,h)
@@ -27,3 +26,118 @@
 
 end
 </code></pre>
+
+<h3>Demo</h3>
+
+<canvas id="mainCanvas" style="background-color:plum"></canvas>
+
+<script>
+
+  // ------------------------------------------------------
+
+  const width = 640;
+  const height = 360;
+
+  const midX = width / 2;
+  const midY = height / 2;
+
+  // ------------------------------------------------------
+
+  function drawCenter(ctx){
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#FFFF00';
+    ctx.beginPath();
+    ctx.moveTo(midX-5, midY);
+    ctx.lineTo(midX+5, midY);
+    ctx.moveTo(midX, midY-5);
+    ctx.lineTo(midX, midY+5);
+    ctx.stroke();
+  }
+
+  function dotProduct(vecA,vecB){
+    let sum = 0;
+    for(let i=0;i<3;i++){
+      sum += vecA[i] * vecB[i];
+    }
+    return sum;
+  }
+
+  function subVectors(vecA,vecB){
+    let result = Array(3);
+    for(let i=0;i<3;i++){
+      result[i] = vecA[i] - vecB[i];
+    }
+    return result;
+  }
+
+  function crossProduct(vecA,vecB){
+    return [vecA[1]*vecB[2]-vecA[2]*vecB[1],
+            vecA[2]*vecB[0]-vecA[0]*vecB[2],
+            vecA[0]*vecB[1]-vecA[1]*vecB[0]];
+  }
+
+  function p3dTo2d(point,observerPosition,observerVector,
+                  observerUp,fieldOfView,h){
+    let observerRight = crossProduct(observerUp,observerVector);
+    let v = subVectors(point,observerPosition);
+    let z = dotProduct(v,observerVector);
+    d = h * Math.tan(fieldOfView);
+    x = d * dotProduct(v,observerRight) / z
+    y = d * dotProduct(v,observerUp) / z
+    return [x,-y];
+  }
+
+  function draw2dPoints(ctx,points2d){
+    ctx.beginPath();
+    ctx.moveTo(points2d[0][0], points2d[0][1]);
+    for(let i=1;i<points2d.length;i++){
+      ctx.lineTo(points2d[i][0], points2d[i][1]);
+    }
+    ctx.lineTo(points2d[0][0], points2d[0][1]);
+    ctx.stroke();
+  }
+
+  function points3dToPoints2d(points3d,obs,obsVec,obsUp,fov,h){
+    let points2d = Array(points3d.length);
+    for(let i=0;i<points3d.length;i++){
+      let p2d = p3dTo2d(points3d[i],obs,obsVec,obsUp,fov,h);
+      p2d[0] += midX; p2d[1] += midY;
+      points2d[i] = p2d;
+    }
+    return points2d;
+  }
+
+  function main(){
+
+    let ca = document.getElementById("mainCanvas");
+    let ctx = ca.getContext("2d");
+
+    ca.width = width;
+    ca.height = height;
+
+    let observer = [0,15,-15];
+    let observerVector = [0,0,1];
+    let observerUp = [0,1,0];
+    let fieldOfView = 0.78;
+    let h = height / 2;
+
+    const points3d = [[0,0,20],[0,0,40],[20,0,40],[20,0,20]];
+
+    let points2d =
+      points3dToPoints2d(points3d,observer,observerVector,
+                         observerUp,fieldOfView,h);
+
+    draw2dPoints(ctx,points2d);
+    drawCenter(ctx);
+
+  }
+
+  let t0 = performance.now();
+  main();
+  let t1 = performance.now();
+  let t = t1 - t0;
+
+  console.log(Math.floor(1000/t) + " fps");
+  console.log(t + "ms");
+
+</script>
