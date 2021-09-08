@@ -266,11 +266,12 @@
     "Berkelium","Californium","Einsteinium","Fermium","Mendelevium",
     "Nobelium","Lawrencium","Rutherfordium","Dubnium","Seaborgium",
     "Bohrium","Hassium","Meitnerium","Darmstadtium","Roentgenium",
-    "Copernicium","Ununtrium","Flerovium","Moscovium","Livermorium",
+    "Copernicium","Nihonium","Flerovium","Moscovium","Livermorium",
     "Tennessine","Oganesson"
   ];
 
   let table = document.getElementById('maintable');
+  let lastCell = table.rows[0].cells[0];
 
   // ------------------------------------------------------
 
@@ -338,6 +339,12 @@
 
   function numShells(conf){
     return conf[conf.length-1][0];
+  }
+
+  function highlightCell(x,y){
+    lastCell.style.backgroundColor = 'cornsilk';
+    table.rows[y].cells[x].style.backgroundColor = 'aqua';
+    lastCell = table.rows[y].cells[x];
   }
 
   // Draw arrows in group of squares
@@ -521,6 +528,9 @@
   function displayElement(x,y){
 
     let t0 = performance.now();
+
+    // Select cell
+    highlightCell(x,y);
 
     // Get atomic number and show data
     showAtom(getAtomicNumber(x,y));

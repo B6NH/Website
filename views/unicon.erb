@@ -1,1 +1,99 @@
 <h1>Unicon</h1>
+
+<p>
+  Unicon is a very high-level programming language
+  with goal-directed evaluation. Control flow is based
+  on the action success or failure. Language also makes
+  extensive use of generators.
+</p>
+
+<ul>
+
+  <li>
+    To compile and run Unicon program save the source
+    code in a file with the extension .icn and at the
+    command line type <code>unicon myfilename.icn -x</code>.
+  </li>
+
+  <li>
+    Unicon program starts with the <em>main</em> function.
+    <pre><code>procedure main()
+  write("Hello World")
+end
+</code></pre>
+<pre class="coutput"><samp>Hello World
+</samp></pre>
+  </li>
+
+  <li>
+    Operator <em>:=</em> is used for assignments.
+    Variables may or may not be declared before use.
+    Lines that start with a <em>#</em> sign are comments.
+    <pre><code>procedure main()
+
+  # Optional variable declaration
+  local a, b
+
+  # Semicolon is used to separate statements on a single line
+  a := 15 ; b := 23
+
+  write(a," + ",b," = ",a + b)
+
+end
+</code></pre>
+<pre class="coutput"><samp>15 + 23 = 38
+</samp></pre>
+  </li>
+
+  <li>
+    Control structure <em>every</em> executes a block
+    of code for all values returned by the generator.
+    It can be used to create loops.
+    <pre><code>procedure main()
+
+  sum := 0 ; product := 1
+
+  # Expression '1 to 5' generates values from 1 to 5,
+  # which are assigned to 'i' and used inside loop
+  every i := 1 to 5 do {
+    sum +:= i
+    product *:= i
+  }
+
+  write(sum)
+  write(product)
+
+end
+</code></pre>
+<pre class="coutput"><samp>15
+120
+</samp></pre>
+  </li>
+
+  <li>
+    Functions are defined using the word <em>procedure</em>.
+    The argument types may be specified, but it is not necessary.
+    Simple types are passed by value and compound types by reference.
+    <pre><code>procedure main()
+  write(addAndMultiply(7,12))
+  write(myAdd())
+end
+
+procedure addAndMultiply(a:integer,b:integer)
+  return a + b + a * b
+end
+
+# Default argument values
+procedure myAdd(p:5,d:integer:12)
+  return p + d
+end
+</code></pre>
+<pre class="coutput"><samp>103
+17
+</samp></pre>
+  </li>
+
+</ul>
+
+
+

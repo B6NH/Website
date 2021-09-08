@@ -51,3 +51,10 @@ pre {
   background-color: lightgreen;
   font-size: 16px;
 }
+
+.coutput {
+  background-color:lightgrey;
+  color: black;
+  font-size: 15px;
+}
+
