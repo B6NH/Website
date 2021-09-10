@@ -11,7 +11,7 @@
 <ul>
 
   <li>
-    Variables and mathematical operations
+    The basic functions of Tcl are operations on variables and mathematical calculations.
     <pre><code># The <em>set</em> command is used for assignments.
 set a 5
 
@@ -22,6 +22,12 @@ set b 8 ; set c 9
 # Mathematical expressions are executed using the expr command
 puts "$a + $b = [expr {$a+$b}]"
 puts "$b * $c = [expr {$a*$c}]"
+
+# Variables can be unset
+unset a
+
+# This expression would cause an error
+# puts $a
 </code></pre>
 <pre class="coutput"><samp>5 + 8 = 13
 8 * 9 = 45
@@ -29,7 +35,7 @@ puts "$b * $c = [expr {$a*$c}]"
   </li>
 
   <li>
-    Loops
+    Loops allow to perform some action multiple times.
     <pre><code># For loop
 for {set i 0} {$i < 3} {incr i} {
   puts $i
@@ -57,7 +63,8 @@ while {$i < 3} {
   </li>
 
   <li>
-    Control structures
+    Control structures allow you to perform appropriate actions
+    while the program is running.
     <pre><code># Conditional instruction
 set a 5
 if {$a > 5} {
@@ -105,7 +112,8 @@ Twenty
   </li>
 
   <li>
-    Lists
+    A list is an ordered collection of values.
+    Individual elements are accessed through integer indices.
     <pre><code># Lists can be created in various ways
 set lst1 "5 6 12"
 set lst2 {apple plum peach}
@@ -126,19 +134,87 @@ lappend lst2 pear
 puts "List 1: $lst1"
 puts "List 2: $lst2"
 puts "List 3: $lst3"
+
+puts Foreach:
+
+# Foreach loop can be used with lists
+foreach value $lst2 {
+  puts $value
+}
+
+puts ---
+
+# Look for a value in the list
+puts "Value 'peach' is at index [lsearch $lst2 peach]"
+
+# Lists can be sorted
+set lst3 [lsort $lst3]
+puts "Sorted list: $lst3"
 </code></pre>
 <pre class="coutput"><samp>Length of List 1: 3
 Third element is peach
 List 1: 5 6 12
 List 2: orange plum peach pear
 List 3: 2 pineapple 10
+Foreach:
+orange
+plum
+peach
+pear
+---
+Value 'peach' is at index 2
+Sorted list: 10 2 pineapple
 </samp></pre>
   </li>
 
   <li>
-    Arrays
+    Arrays are unordered collections of values
+    that are accessed through string indices.
+    <pre><code># Set array values
+set person(name) John
+set person(points) 500
+
+# Show array content
+puts $person(name)
+puts $person(points)
+
+# Array functions
+puts "Size: [array size person]"
+puts "Indices: [array names person]"
+puts "Array converted to list: [array get person]"
+
+puts ---
+
+# Lists can be converted to arrays
+set list1 {width 640 height 480 color red}
+array set arrayFromList $list1
+
+puts $arrayFromList(color)
+puts $arrayFromList(width)
+puts $arrayFromList(height)
+
+puts ---
+
+# Foreach loop can be used with arrays if
+# the order of the elements is not important
+foreach n [array names arrayFromList] {
+  puts $arrayFromList($n)
+}
+</code></pre>
+<pre class="coutput"><samp>John
+500
+Size: 2
+Indices: points name
+Array converted to list: points 500 name John
+---
+red
+640
+480
+---
+640
+480
+red
+</samp></pre>
   </li>
 
 </ul>
-
-
