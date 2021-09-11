@@ -10,13 +10,13 @@
 <ul>
 
   <li>
-    To compile and run Unicon program save the source
+    To compile and <b>run</b> Unicon program save the source
     code in a file with the extension .icn and at the
     command line type <code>unicon myfilename.icn -x</code>.
   </li>
 
   <li>
-    Unicon program starts with the <em>main</em> function.
+    Unicon program starts with the <em><b>main</b></em> function.
     <pre><code>procedure main()
   write("Hello World")
 end
@@ -27,7 +27,7 @@ end
 
   <li>
     Operator <em>:=</em> is used for assignments.
-    Variables may or may not be declared before use.
+    <b>Variables</b> may or may not be declared before use.
     Lines that start with a <em>#</em> sign are comments.
     <pre><code>procedure main()
 
@@ -46,7 +46,7 @@ end
   </li>
 
   <li>
-    Control structure <em>every</em> executes a block
+    Control structure <em><b>every</b></em> executes a block
     of code for all values returned by the generator.
     It can be used to create loops.
     <pre><code>procedure main()
@@ -71,7 +71,7 @@ end
   </li>
 
   <li>
-    Functions are defined using the word <em>procedure</em>.
+    <b>Functions</b> are defined using the word <em>procedure</em>.
     The argument types may be specified, but it is not necessary.
     Simple types are passed by value and compound types by reference.
     <pre><code>procedure main()
@@ -93,7 +93,30 @@ end
 </samp></pre>
   </li>
 
+  <li>
+    <b>Tables</b> are the basic compound type in the Unicon language.
+    They are unordered collections of values that are accessed by keys.
+    <pre><code>myTable := table()
+myTable["color"] := "red"
+</code></pre>
+<pre class="coutput"><samp>
+</samp></pre>
+  </li>
+
+  <li>
+    <b>Lists</b>
+    <pre><code>
+</code></pre>
+<pre class="coutput"><samp>
+</samp></pre>
+  </li>
+
+  <li>
+    <b>Records</b>
+    <pre><code>
+</code></pre>
+<pre class="coutput"><samp>
+</samp></pre>
+  </li>
+
 </ul>
-
-
-

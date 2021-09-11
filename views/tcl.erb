@@ -11,7 +11,8 @@
 <ul>
 
   <li>
-    The basic functions of Tcl are operations on variables and mathematical calculations.
+    The basic functions of Tcl are operations on
+    <b>variables</b> and mathematical calculations.
     <pre><code># The <em>set</em> command is used for assignments.
 set a 5
 
@@ -35,7 +36,7 @@ unset a
   </li>
 
   <li>
-    Loops allow to perform some action multiple times.
+    With <b>loops</b>, it is possible to perform some operation many times.
     <pre><code># For loop
 for {set i 0} {$i < 3} {incr i} {
   puts $i
@@ -63,7 +64,7 @@ while {$i < 3} {
   </li>
 
   <li>
-    Control structures allow you to perform appropriate actions
+    <b>Control structures</b> allow to perform appropriate actions
     while the program is running.
     <pre><code># Conditional instruction
 set a 5
@@ -112,7 +113,7 @@ Twenty
   </li>
 
   <li>
-    A list is an ordered collection of values.
+    A <b>list</b> is an ordered collection of values.
     Individual elements are accessed through integer indices.
     <pre><code># Lists can be created in various ways
 set lst1 "5 6 12"
@@ -168,7 +169,7 @@ Sorted list: 10 2 pineapple
   </li>
 
   <li>
-    Arrays are unordered collections of values
+    <b>Arrays</b> are unordered collections of values
     that are accessed through string indices.
     <pre><code># Set array values
 set person(name) John
@@ -214,6 +215,87 @@ red
 640
 480
 red
+</samp></pre>
+  </li>
+
+  <li>
+    A <b>dictionary</b> is a data type that combines the
+    features of arrays and lists.
+    <pre><code># Create dictionary
+dict set students 0 name John
+dict set students 0 points 200
+dict set students 1 name Meghan
+dict set students 1 points 300
+
+# Dictionary is a value type.
+puts $students
+
+# Acces dictionary values
+puts [dict get $students 1]
+puts [dict get $students 1 name]
+
+puts ---
+
+# Dictionary functions
+puts "Keys: [dict keys $students]"
+puts "Size: [dict size $students]"
+puts "Values: [dict values $students]"
+</code></pre>
+<pre class="coutput"><samp>0 {name John points 200} 1 {name Meghan points 300}
+name Meghan points 300
+Meghan
+---
+Keys: 0 1
+Size: 2
+Values: {name John points 200} {name Meghan points 300}
+</samp></pre>
+  </li>
+
+  <li>
+    <b>Functions</b> are defined using the word <em>proc</em>.
+    By default, parameters are passed by value.
+    If the procedure must modify the passed variable,
+    use a global variable or use the <em>upvar</em> command.
+    <pre><code># Modify list using upvar command
+proc modifyList {lst} {
+  upvar $lst listRef
+  lset listRef 1 111
+}
+
+# Pass by reference with global
+proc modifyNumber {n} {
+  global $n
+  set $n 10
+}
+
+# Pass by value
+proc sumList {lst} {
+  set sum 0
+  foreach value $lst {
+    set sum [expr {$sum+$value}]
+  }
+  return $sum
+}
+
+# Global variable declaration
+global myValue
+
+set myValue 20
+set myList "5 6 7 8"
+
+# Pass a variable name to modify its value
+modifyList myList
+modifyNumber myValue
+
+puts "List: $myList"
+puts "Number: $myValue"
+
+# Pass the contents of the variable
+puts "Sum: [sumList $myList]"
+</code></pre>
+<pre class="coutput"><samp>List: 5 111 7 8
+Number: 10
+Sum: 131
 </samp></pre>
   </li>
 
