@@ -7,19 +7,245 @@
 </p>
 
 <ul>
+
   <li>
-    To assign variables, as in many other languages, the symbol <em>=</em> is used.
-    Mathematical operations are performed according to the standard order.
-    Rexx program ends with the <em>exit</em> statement.
-    <pre><code>a = 8
+    In Rexx, <b>variables</b> don't have to be declared.
+    Assignments, as in many other languages, are denoted by the symbol <em>=</em>.
+    Language has built-in functions for basic mathematical operations such
+    as addition, subtraction, multiplication, division, etc.
+    Rexx program starts when the first instruction is encountered and ends
+    with an <em>exit</em> statement.
+    <pre><code>/* Assignments */
+a = 8
 b = 2 ; c = 3
 
-/* Display the result of the calculation */
+/* The 'say' instruction prints the data to the screen */
 say a + b * c
 
+/* Mathematical operations */
+say 'Integer division:' 15 % 6
+say 'Remainder:' 20 // 16
+say 'Power:' 2 ** 8
+
+
+/* End script */
 exit 0
 </code></pre>
 <pre class="coutput"><samp>14
+Integer division: 2
+Remainder: 4
+Power: 256
 </samp></pre>
   </li>
+
+  <li>The language provides <b>conditional statements</b> and
+      various types of <b>loops</b>.
+    <pre><code>/* Conditional statement */
+if 5 > 12 then
+  say 'Five is greater than twelve' /* 1 statement */
+else
+  /* 2 or more statements have to be placed inside 'do - end' block. */
+  do
+    say 'Five is not greater than twelve'
+    say 'It is really not'
+  end
+
+say '---'
+
+/* Switch (select) statement */
+a = 5
+
+select
+  when a = 4 then
+    say 'Four'
+  when a = 5 then
+    say 'Five'
+  when a = 6 then
+    do
+      say 'Number'
+      say 'Six'
+    end
+  otherwise
+    /* If there are multiple instructions after 'otherwise',
+       they don't have to be placed in a do-end block */
+    say 'Some'
+    say 'Other'
+    say 'Number'
+end
+
+say '---'
+
+/* While loop */
+i = 0
+do while i \= 3 /* while i is not equal to 3 */
+  say 'While' i
+  i = i + 1
+end
+
+say '---'
+
+/* For loop */
+do i=1 to 3 /* add 'by x' to specify step */
+  say 'For' i
+end
+
+say '---'
+
+/* Forever loop */
+z = 1
+do forever
+ say 'Forever' z
+ z = z + 1
+ if z > 2 then
+   leave /* break forever loop */
+end
+
+say '---'
+
+/* Do while loop */
+i = 5
+do until i = 5
+  say 'Do until' /* displays only once */
+end
+
+say '---'
+
+/* Iterate (continue) statement */
+do i=1 to 5
+  if i < 4 then
+    iterate /* go to the beginning of the loop */
+  say 'Iterate' i
+end
+
+say '---'
+
+/* Signal statement */
+do i=1 to 10
+  if i = 9 then
+    signal mylabel /* go to 'mylabel' label */
+end
+
+/* Label */
+mylabel:
+  say 'Label:' i
+
+exit 0
+</code></pre>
+<pre class="coutput"><samp>Five is not greater than twelve
+It is really not
+---
+Five
+---
+While 0
+While 1
+While 2
+---
+For 1
+For 2
+For 3
+---
+Forever 1
+Forever 2
+---
+Do until
+---
+Iterate 4
+Iterate 5
+---
+Label: 9
+</samp></pre>
+  </li>
+
+  <li>
+    <b>Arrays</b> are data structures that allow to store and process collections of values.
+    They are easy to work with and can be used in many ways.
+    <pre><code>/* Initialize array and set all values to 7 */
+myarray. = 7
+
+/* Print some values */
+do i=1 to 3
+  say myarray.i
+end
+
+/* After initialization all possible indices have the same value */
+say 'At 58:' myarray.58
+say 'At cherries:' myarray.cherries
+
+say '---'
+
+/* Arrays don't have to be initialized */
+players.5 = 'Saida'
+say 'Player 5:' players.5
+
+/* Unitialized element is displayed as PLAYERS.8 */
+say 'Player 8:' players.8
+
+say '---'
+
+/* Index 0 is typically used to store the array size. */
+fruits.0 = 3
+fruits.1 = 'apple'
+fruits.2 = 'orange' ; fruits.3 = 'peach'
+
+/* Show array contents */
+do j = 1 to fruits.0
+  say fruits.j
+end
+
+say '---'
+
+/* If the array was initialized, a while loop can be used to process it */
+colors. = ''
+colors.1 = 'red'
+colors.2 = 'blue'
+colors.3 = 'green'
+
+/* The value '' symbolizes the end of the array and therefore
+   cannot be its regular element. */
+do i = 1 while colors.i <> '' /* Symbols '<>' and '\=' mean 'unequal'.*/
+  say colors.i
+end
+
+say '---'
+
+/* Arrays can have any number of dimensions */
+animals.0 = 2
+
+animals.1.name = 'Lion'
+animals.1.color = 'yellow'
+
+animals.2.name = 'Tiger'
+animals.2.color = 'orange'
+
+do i = 1 to animals.0
+  say 'Name: ' animals.i.name
+  say 'Color: ' animals.i.color
+end
+
+exit 0
+</code></pre>
+<pre class="coutput"><samp>7
+7
+7
+At 58: 7
+At cherries: 7
+---
+Player 5: Saida
+Player 8: PLAYERS.8
+---
+apple
+orange
+peach
+---
+red
+blue
+green
+---
+Name:  Lion
+Color:  yellow
+Name:  Tiger
+Color:  orange
+</samp></pre>
+  </li>
+
 </ul>
