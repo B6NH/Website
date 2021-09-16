@@ -75,10 +75,17 @@ end
     The argument types may be specified, but it is not necessary.
     Simple types are passed by value and compound types by reference.
     <pre><code>procedure main()
+  write(subtract(100,25))
   write(addAndMultiply(7,12))
   write(myAdd())
 end
 
+# Parameters without defined types
+procedure subtract(a,b)
+  return a - b
+end
+
+# Explicitly defined types
 procedure addAndMultiply(a:integer,b:integer)
   return a + b + a * b
 end
@@ -88,7 +95,8 @@ procedure myAdd(p:5,d:integer:12)
   return p + d
 end
 </code></pre>
-<pre class="coutput"><samp>103
+<pre class="coutput"><samp>75
+103
 17
 </samp></pre>
   </li>
@@ -96,16 +104,89 @@ end
   <li>
     <b>Tables</b> are the basic compound type in the Unicon language.
     They are unordered collections of values that are accessed by keys.
-    <pre><code>myTable := table()
-myTable["color"] := "red"
+    <pre><code>procedure main()
+
+  # Initialize table
+  myTable := table()
+
+  # Set values
+  myTable["color"] := "red"
+  myTable["location"] := "east"
+  myTable["animal"] := "lion"
+
+  write("Values: ",myTable["color"],", ", myTable["location"])
+
+  write("---")
+
+  # Table can have default value
+  numbers := table(2)
+  numbers["first"] := 5
+  numbers["second"] := 10
+
+  write(numbers["first"])
+  write(numbers["second"])
+  write("Default value: ",numbers["otherkey"])
+
+  write("---")
+
+  # Insert new value
+  insert(numbers,"newValue",123)
+
+  write("New value: ",numbers["newValue"])
+
+  # Delete value
+  delete(numbers,"newValue")
+
+  write("After deletion: ",numbers["newValue"])
+
+  write("---")
+
+  # Check if the key exists in the table
+  if member(myTable,"color") then {
+    write("Key ","\"color\""," exists")
+  }
+
+  # Use asterisk to check table size
+  write("Table size: ",*myTable)
+
+  write("Table elements:")
+
+  # Exclamation mark generates all values from the table
+  every element := !myTable do {
+    write(element)
+  }
+
+  write("---")
+
+  # The question mark takes random value from the table
+  write(?myTable)
+
+end
 </code></pre>
-<pre class="coutput"><samp>
+<pre class="coutput"><samp>Values: red, east
+---
+5
+10
+Default value: 2
+---
+New value: 123
+After deletion: 2
+---
+Key "color" exists
+Table size: 3
+Table elements:
+lion
+red
+east
+---
+lion
 </samp></pre>
   </li>
 
   <li>
-    <b>Lists</b>
-    <pre><code>
+    <b>Lists</b> are ordered collections of values with dynamic size.
+    <pre><code>procedure main()
+end
 </code></pre>
 <pre class="coutput"><samp>
 </samp></pre>
@@ -113,7 +194,17 @@ myTable["color"] := "red"
 
   <li>
     <b>Records</b>
-    <pre><code>
+    <pre><code>procedure main()
+end
+</code></pre>
+<pre class="coutput"><samp>
+</samp></pre>
+  </li>
+
+  <li>
+    <b>OOP</b>
+    <pre><code>procedure main()
+end
 </code></pre>
 <pre class="coutput"><samp>
 </samp></pre>
