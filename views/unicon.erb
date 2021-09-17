@@ -184,29 +184,274 @@ lion
   </li>
 
   <li>
-    <b>Lists</b> are ordered collections of values with dynamic size.
+    <b>List</b> is an ordered collection of values.
+    Its size can change during program execution.
     <pre><code>procedure main()
+
+  # Create a list of size 5
+  # Default value for all items is 1
+  emptyList := list(5,1)
+
+  # Create a list using a literal
+  myList := [15,"purple","white"]
+
+  # First element of list has index 1
+  write(myList[1])
+
+  write("---")
+
+  # Add an element at the beginning of the list
+  push(myList,"red")
+
+  # As with tables, exclamation mark
+  # generates all values in the list
+  every e := !myList do {
+    write(e)
+  }
+
+  # Remove first item from the list
+  pop(myList)
+
+  write("---")
+
+  # Add a value to the end of the list
+  put(myList,"end")
+
+  every e := !myList do {
+    write(e)
+  }
+
+  # Remove a value from the end of the list
+  pull(myList)
+
+  write("---")
+
+  # Add value at index 2
+  insert(myList,2,"second")
+
+  every e := !myList do {
+    write(e)
+  }
+
+  write("---")
+
+  # Remove value at index 3
+  delete(myList,3)
+
+  every e := !myList do {
+    write(e)
+  }
+
 end
+
 </code></pre>
-<pre class="coutput"><samp>
+<pre class="coutput"><samp>15
+---
+red
+15
+purple
+white
+---
+15
+purple
+white
+end
+---
+15
+second
+purple
+white
+---
+15
+second
+white
 </samp></pre>
   </li>
 
   <li>
-    <b>Records</b>
-    <pre><code>procedure main()
+    <b>Records</b> allow to define new types of data.
+    They have a fixed size and store values as fields.
+    <pre><code># Declare rectangle record as a new global name
+record rectangle(width,height,color)
+
+procedure main()
+
+  # Create record instances
+  b := rectangle(20,10,"blue")
+  r := rectangle(30,45,"red")
+  o := rectangle(50,25,"orange")
+
+  # Access values by field name
+  write("b: ", b.width, ", ", b.height, ", ", b.color)
+
+  # Access values by index
+  write("r: ", r[1], ", ", r[2], ", ", r[3])
+
+  # Access values using array notation
+  write("o: ", o["width"], ", ", o["height"], ", ", o["color"])
+
 end
 </code></pre>
-<pre class="coutput"><samp>
+<pre class="coutput"><samp>b: 20, 10, blue
+r: 30, 45, red
+o: 50, 25, orange
 </samp></pre>
   </li>
 
   <li>
-    <b>OOP</b>
+    <b>Sets</b> are unordered collections of unique elements.
     <pre><code>procedure main()
+
+  # Create set
+  mySet := set("stone","glass",18,"violet","albedo")
+
+  # Add element
+  insert(mySet,"star")
+
+  write("Set size: ",*mySet)
+  write("Set:")
+
+  # Display set elements
+  every e := !mySet do {
+    write(" ",e)
+  }
+
+  # Remove element
+  delete(mySet,"stone")
+
+  write("---")
+
+  flowers := set("orchid","tulip","violet","rose")
+
+  write("Union:")
+  every e := !(flowers ++ mySet) do {
+    write(" ",e)
+  }
+
+  write("Intersection:")
+  every e := !(flowers ** mySet) do {
+    write(" ",e)
+  }
+
+  write("Difference:")
+  every e := !(flowers -- mySet) do {
+    write(" ",e)
+  }
+
+  write("---")
+
+  # List passed to the set constructor
+  # can be created using list comprehension
+  every el := !set([: 1 to 10 by 2 :]) do {
+    write(el)
+  }
+
 end
 </code></pre>
-<pre class="coutput"><samp>
+<pre class="coutput"><samp>Set size: 6
+Set:
+ stone
+ star
+ violet
+ 18
+ glass
+ albedo
+---
+Union:
+ star
+ violet
+ tulip
+ orchid
+ rose
+ 18
+ glass
+ albedo
+Intersection:
+ violet
+Difference:
+ tulip
+ orchid
+ rose
+---
+5
+9
+3
+7
+1
+</samp></pre>
+  </li>
+
+  <li>
+    <b>Classes</b> allow to define new data
+    types and methods that operate on them.
+    <pre><code># Class definition
+class plorg(name,level,color,points)
+
+  # Method definitions
+
+  method showAll()
+    write("Plorg:")
+    write(" Name: ",name)
+    write(" Level: ",level)
+    write(" Color: ",color)
+    write(" Points: ",points)
+  end
+
+  method showLevel()
+    # Use 'self' to explicitly indicate
+    # that variable is a field of object.
+    write("Level: ",self.level)
+  end
+
+  method showPoints()
+    write("Points: ",points)
+  end
+
+  method increaseLevel(val:1)
+    level +:= val
+  end
+
+  method addPoints(p)
+    points +:= p
+  end
+
+  # Constructor with default values
+  initially(na:"",le:0,co:"white",po:0)
+    name := na
+    level := le
+    color := co
+    points := po
+
+end
+
+procedure main()
+
+  # Create object instance
+  plr := plorg("Betelgeuse",2,"purple")
+
+  # Call method to add points
+  plr.addPoints(25)
+
+  # Display plorg data
+  plr.showAll()
+
+  write("---")
+
+  every 1 to 5 do
+    plr.increaseLevel()
+
+  # Show level after method calls
+  plr.showLevel()
+
+end
+</code></pre>
+<pre class="coutput"><samp>Plorg:
+ Name: Betelgeuse
+ Level: 2
+ Color: purple
+ Points: 25
+---
+Level: 7
 </samp></pre>
   </li>
 
