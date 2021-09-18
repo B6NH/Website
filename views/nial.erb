@@ -11,17 +11,128 @@
 <ul>
 
   <li>
-    <pre><code>
+    The Nial language is designed primarily for interactive use.
+    To start <b>programming session</b>, on the command line type <code>nial -i</code>.
+    Programs can also be saved in text files with the extension .ndf.
+    To load a previously created program, use <em>loaddefs</em> function.
+    For example, if the file name is <em>myfile.ndf</em>, type <code>loaddefs "myfile</code>.
+  </li>
+
+  <li>
+    To <b>assign</b> a value to a variable one may
+    use the <em>:=</em> sign or word <em>gets</em>.
+    Comments are indicated by a percentage sign.
+    <pre><code>% Assignments
+A := 15
+B gets 33
+
+% Mathematical operations
+A + B
+A - B
+A * B
+A / B
 </code></pre>
-<pre class="coutput"><samp>
+<pre class="coutput"><samp>15
+33
+48
+-18
+495
+0.454545
 </samp></pre>
   </li>
 
   <li>
+    Variables can store not only numbers but also <b>strings</b>.
+    <pre><code>% Variables containing strings
+greeting := 'Hi'
+name := 'Farah'
+
+% Use link function to connect arrays
+link greeting ' ' name
+
+% Functions can also be used in infix notation
+greeting link name
+</code></pre>
+<pre class="coutput"><samp>Hi
+Farah
+Hi Farah
+HiFarah
+</samp></pre>
+  </li>
+
+  <li>
+    Math operations work for <b>arrays</b> if they have
+    the same size or if the size of one of them is 1.
+    <pre><code>5 6 7 * 4 5 2
+8 5 3 / 2
+9 - 4 2 7
+</code></pre>
+<pre class="coutput"><samp>20 30 14
+4. 2.5 1.5
+5 7 2
+</samp></pre>
+  </li>
+
+  <li>
+    To create an array with more <b>dimensions</b>
+    one can use the <em>reshape</em> function.
+    How the data is displayed on the screen depends
+    on two switches: diagram/sketch and decor/nodecor.
+    <pre><code>% Set switches
+set "diagram
+set "decor
+
+% Create 3x3 array and fill it with values generated
+% by function call 'count 9' (numbers from 1 to 9)
+3 3 reshape count 9
+</code></pre>
+<pre class="coutput"><samp>sketch
+"nodecor
++-+-+-+
+|1|2|3|
++-+-+-+
+|4|5|6|
++-+-+-+
+|7|8|9|
++-+-+-+
+</samp></pre>
+  </li>
+
+  <li>
+    Nial like many other languages has <b>conditional statements</b> and <b>loops</b>.
+    <pre><code>% Conditional statement
+Number := 5
+IF Number = 4 THEN
+  Result := 1
+ELSE
+  Result := 2
+ENDIF
+
+% For loop
+Total := 0
+FOR I WITH count 5 DO
+  Total := Total + I
+ENDFOR
+
+% While loop
+I := 0
+WHILE I < 5 DO
+  write I
+  I := I + 1
+ENDWHILE
+</code></pre>
+  </li>
+
+  <li>
+    Language provides many <b>functions</b> that can be used to process arrays.
     <pre><code>
 </code></pre>
-<pre class="coutput"><samp>
-</samp></pre>
+  </li>
+
+  <li>
+    Nial allows users to define <b>new functions</b>.
+    <pre><code>
+</code></pre>
   </li>
 
 </ul>
