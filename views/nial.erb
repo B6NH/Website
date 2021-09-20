@@ -125,14 +125,143 @@ ENDWHILE
 
   <li>
     Language provides many <b>functions</b> that can be used to process arrays.
-    <pre><code>
+    <pre><code>set "diagram
+myarr := 4 3 reshape count 12
+
+% Get array shape (4 3)
+shape myarr
+
+% Transpose of an array
+transpose myarr
+
+% Rows and columns
+rows myarr
+cols myarr
+
+% Array size
+tally myarr
+
+% Reverse array
+reverse myarr
+
+% Array sum
+sum myarr
 </code></pre>
+<pre class="coutput"><samp>sketch
++--+--+--+
+| 1| 2| 3|
++--+--+--+
+| 4| 5| 6|
++--+--+--+
+| 7| 8| 9|
++--+--+--+
+|10|11|12|
++--+--+--+
++-+-+
+|4|3|
++-+-+
++-+-+-+--+
+|1|4|7|10|
++-+-+-+--+
+|2|5|8|11|
++-+-+-+--+
+|3|6|9|12|
++-+-+-+--+
++-------+-------+-------+----------+
+|+-+-+-+|+-+-+-+|+-+-+-+|+--+--+--+|
+||1|2|3|||4|5|6|||7|8|9|||10|11|12||
+|+-+-+-+|+-+-+-+|+-+-+-+|+--+--+--+|
++-------+-------+-------+----------+
++----------+----------+----------+
+|+-+-+-+--+|+-+-+-+--+|+-+-+-+--+|
+||1|4|7|10|||2|5|8|11|||3|6|9|12||
+|+-+-+-+--+|+-+-+-+--+|+-+-+-+--+|
++----------+----------+----------+
+12
++--+--+--+
+|12|11|10|
++--+--+--+
+| 9| 8| 7|
++--+--+--+
+| 6| 5| 4|
++--+--+--+
+| 3| 2| 1|
++--+--+--+
+78
+</samp></pre>
   </li>
 
   <li>
     Nial allows users to define <b>new functions</b>.
-    <pre><code>
+    <pre><code>set "diagram
+
+% Function definition
+myfunction IS OPERATION Param { Param * 2 }
+
+% Alternatively, the word 'OP' can be used
+newfunction IS OP NumberA NumberB {
+  NumberA + NumberB
+}
+
+myfunction 8
+myfunction count 5
+myfunction (3 4 reshape count 12)
+
+newfunction 5 6
+9 newfunction 15
+
+% The same argument can be passed
+% simultaneously to multiple functions
+% using atlas (list of functions)
+[opposite,myfunction,sin] 2
 </code></pre>
+<pre class="coutput"><samp>sketch
+16
+2 4 6 8 10
++--+--+--+--+
+| 2| 4| 6| 8|
++--+--+--+--+
+|10|12|14|16|
++--+--+--+--+
+|18|20|22|24|
++--+--+--+--+
+11
+24
++--+-+--------+
+|-2|4|0.909297|
++--+-+--------+
+</samp></pre>
+  </li>
+
+  <li>
+    With <b>transformers</b>, new modified versions of functions can be created.
+    <pre><code>% Transformer definition
+TRIPLE IS TRANSFORMER f OPERATION P {
+ f f f P
+}
+
+increment IS OPERATION P { P + 1 }
+
+% Apply increment function 3 times
+TRIPLE increment 7
+
+% Nial also has built-in transformers
+% For example, 'EACH' applies a function
+% to each element of an array
+EACH reverse 'one' 'two' 'three'
+
+% Calling a function without a
+% transformer inverts the entire array
+reverse 'one' 'two' 'three'
+</code></pre>
+<pre class="coutput"><samp>10
++---+---+-----+
+|eno|owt|eerht|
++---+---+-----+
++-----+---+---+
+|three|two|one|
++-----+---+---+
+</samp></pre>
   </li>
 
 </ul>

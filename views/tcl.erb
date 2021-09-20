@@ -252,10 +252,10 @@ Values: {name John points 200} {name Meghan points 300}
   </li>
 
   <li>
-    <b>Functions</b> are defined using the word <em>proc</em>.
+    <b>Functions</b> are defined using word <em>proc</em>.
     By default, parameters are passed by value.
-    If the procedure must modify the passed variable,
-    use a global variable or use the <em>upvar</em> command.
+    If the procedure must modify a variable
+    make it global or use <em>upvar</em> command.
     <pre><code># Modify list using upvar command
 proc modifyList {lst} {
   upvar $lst listRef
