@@ -8,9 +8,23 @@
   and matrices.
 </p>
 
-<ul>
+<ol>
+  <li><a href="#session">Programming session</a></li>
+  <li><a href="#assignments">Assignments</a></li>
+  <li><a href="#strings">Strings</a></li>
+  <li><a href="#math">Mathematical operations</a></li>
+  <li><a href="#creating">Creating arrays</a></li>
+  <li><a href="#loops">Conditional statement and loops</a></li>
+  <li><a href="#processing">Array processing functions</a></li>
+  <li><a href="#definitions">Function definitions</a></li>
+  <li><a href="#transformers">Transformers</a></li>
+</ol>
 
-  <li>
+<hr>
+
+<ol>
+
+  <li id="session">
     The Nial language is designed primarily for interactive use.
     To start <b>programming session</b>, on the command line type <code>nial -i</code>.
     Programs can also be saved in text files with the extension .ndf.
@@ -18,7 +32,7 @@
     For example, if the file name is <em>myfile.ndf</em>, type <code>loaddefs "myfile</code>.
   </li>
 
-  <li>
+  <li id="assignments">
     To <b>assign</b> a value to a variable one may
     use the <em>:=</em> sign or word <em>gets</em>.
     Comments are indicated by a percentage sign.
@@ -41,7 +55,7 @@ A / B
 </samp></pre>
   </li>
 
-  <li>
+  <li id="strings">
     Variables can store not only numbers but also <b>strings</b>.
     <pre><code>% Variables containing strings
 greeting := 'Hi'
@@ -60,7 +74,7 @@ HiFarah
 </samp></pre>
   </li>
 
-  <li>
+  <li id="math">
     Math operations work for <b>arrays</b> if they have
     the same size or if the size of one of them is 1.
     <pre><code>5 6 7 * 4 5 2
@@ -73,7 +87,7 @@ HiFarah
 </samp></pre>
   </li>
 
-  <li>
+  <li id="creating">
     To create an array with more <b>dimensions</b>
     one can use the <em>reshape</em> function.
     How the data is displayed on the screen depends
@@ -98,7 +112,7 @@ set "decor
 </samp></pre>
   </li>
 
-  <li>
+  <li id="loops">
     Nial like many other languages has <b>conditional statements</b> and <b>loops</b>.
     <pre><code>% Conditional statement
 Number := 5
@@ -123,7 +137,7 @@ ENDWHILE
 </code></pre>
   </li>
 
-  <li>
+  <li id="processing">
     Language provides many <b>functions</b> that can be used to process arrays.
     <pre><code>set "diagram
 myarr := 4 3 reshape count 12
@@ -191,7 +205,7 @@ sum myarr
 </samp></pre>
   </li>
 
-  <li>
+  <li id="definitions">
     Nial allows users to define <b>new functions</b>.
     <pre><code>set "diagram
 
@@ -233,7 +247,7 @@ newfunction 5 6
 </samp></pre>
   </li>
 
-  <li>
+  <li id="transformers">
     With <b>transformers</b>, new modified versions of functions can be created.
     <pre><code>% Transformer definition
 TRIPLE IS TRANSFORMER f OPERATION P {
@@ -264,4 +278,4 @@ reverse 'one' 'two' 'three'
 </samp></pre>
   </li>
 
-</ul>
+</ol>

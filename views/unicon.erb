@@ -7,16 +7,61 @@
   extensive use of generators.
 </p>
 
-<ul>
+<ol>
+  <li>
+    <a href="#run">Run program</a>
+  </li>
 
   <li>
+    <a href="#mainfunction">Main function</a>
+  </li>
+
+  <li>
+    <a href="#variables">Variables</a>
+  </li>
+
+  <li>
+    <a href="#generators">Generators</a>
+  </li>
+
+  <li>
+    <a href="#functions">Functions</a>
+  </li>
+
+  <li>
+    <a href="#tables">Tables</a>
+  </li>
+
+  <li>
+    <a href="#lists">Lists</a>
+  </li>
+
+  <li>
+    <a href="#records">Records</a>
+  </li>
+
+  <li>
+    <a href="#sets">Sets</a>
+  </li>
+
+  <li>
+    <a href="#classes">Classes</a>
+  </li>
+
+</ol>
+
+<hr>
+
+<ol>
+
+  <li id="run">
     To compile and <b>run</b> Unicon program save the source
     code in a file with the extension .icn and at the
     command line type <code>unicon myfilename.icn -x</code>.
   </li>
 
-  <li>
-    Unicon program starts with the <em><b>main</b></em> function.
+  <li id="mainfunction">
+    Unicon program <b>starts</b> with function <em>main</em>.
     <pre><code>procedure main()
   write("Hello World")
 end
@@ -25,7 +70,7 @@ end
 </samp></pre>
   </li>
 
-  <li>
+  <li id="variables">
     Operator <em>:=</em> is used for assignments.
     <b>Variables</b> may or may not be declared before use.
     Lines that start with a <em>#</em> sign are comments.
@@ -45,7 +90,7 @@ end
 </samp></pre>
   </li>
 
-  <li>
+  <li id="generators">
     Control structure <em><b>every</b></em> executes a block
     of code for all values returned by the generator.
     It can be used to create loops.
@@ -70,7 +115,7 @@ end
 </samp></pre>
   </li>
 
-  <li>
+  <li id="functions">
     <b>Functions</b> are defined using the word <em>procedure</em>.
     The argument types may be specified, but it is not necessary.
     Simple types are passed by value and compound types by reference.
@@ -101,7 +146,7 @@ end
 </samp></pre>
   </li>
 
-  <li>
+  <li id="tables">
     <b>Tables</b> are the basic compound type in the Unicon language.
     They are unordered collections of values that are accessed by keys.
     <pre><code>procedure main()
@@ -153,7 +198,7 @@ end
 
   # Exclamation mark generates all values from the table
   every element := !myTable do {
-    write(element)
+    write(" ",element)
   }
 
   write("---")
@@ -175,15 +220,15 @@ After deletion: 2
 Key "color" exists
 Table size: 3
 Table elements:
-lion
-red
-east
+ lion
+ red
+ east
 ---
-lion
+east
 </samp></pre>
   </li>
 
-  <li>
+  <li id="lists">
     <b>List</b> is an ordered collection of values.
     Its size can change during program execution.
     <pre><code>procedure main()
@@ -196,17 +241,19 @@ lion
   myList := [15,"purple","white"]
 
   # First element of list has index 1
-  write(myList[1])
+  write("First element: ",myList[1])
 
   write("---")
 
   # Add an element at the beginning of the list
   push(myList,"red")
 
+  write("Element added at the beginning: ")
+
   # As with tables, exclamation mark
   # generates all values in the list
   every e := !myList do {
-    write(e)
+    write(" ",e)
   }
 
   # Remove first item from the list
@@ -217,8 +264,10 @@ lion
   # Add a value to the end of the list
   put(myList,"end")
 
+  write("Element added at the end:")
+
   every e := !myList do {
-    write(e)
+    write(" ",e)
   }
 
   # Remove a value from the end of the list
@@ -229,8 +278,10 @@ lion
   # Add value at index 2
   insert(myList,2,"second")
 
+  write("Element placed at index 2:")
+
   every e := !myList do {
-    write(e)
+    write(" ",e)
   }
 
   write("---")
@@ -238,37 +289,42 @@ lion
   # Remove value at index 3
   delete(myList,3)
 
+  write("Element at index 2 deleted:")
+
   every e := !myList do {
-    write(e)
+    write(" ",e)
   }
 
 end
-
 </code></pre>
-<pre class="coutput"><samp>15
+<pre class="coutput"><samp>First element: 15
 ---
-red
-15
-purple
-white
+Element added at the beginning:
+ red
+ 15
+ purple
+ white
 ---
-15
-purple
-white
-end
+Element added at the end:
+ 15
+ purple
+ white
+ end
 ---
-15
-second
-purple
-white
+Element placed at index 2:
+ 15
+ second
+ purple
+ white
 ---
-15
-second
-white
+Element at index 2 deleted:
+ 15
+ second
+ white
 </samp></pre>
   </li>
 
-  <li>
+  <li id="records">
     <b>Records</b> allow to define new types of data.
     They have a fixed size and store values as fields.
     <pre><code># Declare rectangle record as a new global name
@@ -298,7 +354,7 @@ o: 50, 25, orange
 </samp></pre>
   </li>
 
-  <li>
+  <li id="sets">
     <b>Sets</b> are unordered collections of unique elements.
     <pre><code>procedure main()
 
@@ -340,10 +396,12 @@ o: 50, 25, orange
 
   write("---")
 
+  write("List comprehension:")
+
   # List passed to the set constructor
   # can be created using list comprehension
   every el := !set([: 1 to 10 by 2 :]) do {
-    write(el)
+    write(" ",el)
   }
 
 end
@@ -373,15 +431,16 @@ Difference:
  orchid
  rose
 ---
-5
-9
-3
-7
-1
+List comprehension:
+ 5
+ 9
+ 3
+ 7
+ 1
 </samp></pre>
   </li>
 
-  <li>
+  <li id="classes">
     <b>Classes</b> allow to define new data
     types and methods that operate on them.
     <pre><code># Class definition
@@ -455,4 +514,4 @@ Level: 7
 </samp></pre>
   </li>
 
-</ul>
+</ol>
