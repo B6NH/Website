@@ -8,9 +8,21 @@
    allows to easily create applications with a graphical interface.
 </p>
 
-<ul>
+<ol>
+  <li><a href="#variables">Variables</a></li>
+  <li><a href="#loops">Loops</a></li>
+  <li><a href="#structures">Control structures</a></li>
+  <li><a href="#lists">Lists</a></li>
+  <li><a href="#arrays">Arrays</a></li>
+  <li><a href="#dictionaries">Dictionaries</a></li>
+  <li><a href="#functions">Functions</a></li>
+</ol>
 
-  <li>
+<hr>
+
+<ol>
+
+  <li id="variables">
     The basic functions of Tcl are operations on
     <b>variables</b> and mathematical calculations.
     <pre><code># The <em>set</em> command is used for assignments.
@@ -35,7 +47,7 @@ unset a
 </samp></pre>
   </li>
 
-  <li>
+  <li id="loops">
     With <b>loops</b>, it is possible to perform some operation many times.
     <pre><code># For loop
 for {set i 0} {$i < 3} {incr i} {
@@ -63,7 +75,7 @@ while {$i < 3} {
 </samp></pre>
   </li>
 
-  <li>
+  <li id="structures">
     <b>Control structures</b> allow to perform appropriate actions
     while the program is running.
     <pre><code># Conditional instruction
@@ -112,7 +124,7 @@ Twenty
 </samp></pre>
   </li>
 
-  <li>
+  <li id="lists">
     A <b>list</b> is an ordered collection of values.
     Individual elements are accessed through integer indices.
     <pre><code># Lists can be created in various ways
@@ -168,7 +180,7 @@ Sorted list: 10 2 pineapple
 </samp></pre>
   </li>
 
-  <li>
+  <li id="arrays">
     <b>Arrays</b> are unordered collections of values
     that are accessed through string indices.
     <pre><code># Set array values
@@ -218,7 +230,7 @@ red
 </samp></pre>
   </li>
 
-  <li>
+  <li id="dictionaries">
     A <b>dictionary</b> is a data type that combines the
     features of arrays and lists.
     <pre><code># Create dictionary
@@ -251,7 +263,7 @@ Values: {name John points 200} {name Meghan points 300}
 </samp></pre>
   </li>
 
-  <li>
+  <li id="functions">
     <b>Functions</b> are defined using word <em>proc</em>.
     By default, parameters are passed by value.
     If the procedure must modify a variable
@@ -299,4 +311,4 @@ Sum: 131
 </samp></pre>
   </li>
 
-</ul>
+</ol>

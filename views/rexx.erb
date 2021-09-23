@@ -6,9 +6,19 @@
   It is most commonly used for word processing tasks.
 </p>
 
-<ul>
+<ol>
+  <li><a href="#variables">Variables</a></li>
+  <li><a href="#statements">Conditional statements</a></li>
+  <li><a href="#loops">Loops</a></li>
+  <li><a href="#unstructured">Unstructured programming</a></li>
+  <li><a href="#arrays">Arrays</a></li>
+  <li><a href="#functions">Functions</a></li>
+  <li><a href="#parameters">Function parameters</a></li>
+</ol>
 
-  <li>
+<ol>
+
+  <li id="variables">
     In Rexx, <b>variables</b> don't have to be declared.
     Assignments, as in many other languages, are denoted by the symbol <em>=</em>.
     Language has built-in functions for basic mathematical operations such
@@ -27,7 +37,6 @@ say 'Integer division:' 15 % 6
 say 'Remainder:' 20 // 16
 say 'Power:' 2 ** 8
 
-
 /* End script */
 exit 0
 </code></pre>
@@ -38,7 +47,7 @@ Power: 256
 </samp></pre>
   </li>
 
-  <li>
+  <li id="statements">
       The language has a few <b>conditional statements</b>.
     <pre><code>/* Conditional statement */
 if 5 > 12 then
@@ -82,7 +91,7 @@ Five
 </samp></pre>
   </li>
 
-  <li>
+  <li id="loops">
     Several types of <b>loops</b> are available.
     <pre><code>/* While loop */
 i = 0
@@ -110,7 +119,7 @@ For 3
 </samp></pre>
   </li>
 
-  <li>
+  <li id="unstructured">
     Rexx also has <b>unstructured</b> control instructions.
     <pre><code>/* Forever loop */
 z = 1
@@ -164,7 +173,7 @@ Label: 9
 </samp></pre>
   </li>
 
-  <li>
+  <li id="arrays">
     <b>Arrays</b> are data structures that allow to store and process collections of values.
     They are easy to work with and can be used in many ways.
     <pre><code>/* Initialize array and set all values to 7 */
@@ -256,7 +265,7 @@ Color:  orange
 </samp></pre>
   </li>
 
-  <li>
+  <li id="functions">
     Rexx allows the programmer to define new <b>functions</b> and <b>subroutines</b>.
     <pre><code>/* Functions can be called using parentheses or 'call' instruction */
 number = my_function()
@@ -304,7 +313,7 @@ RESULT
 </samp></pre>
   </li>
 
-  <li>
+  <li id="parameters">
     Functions and subroutines can take <b>arguments</b>.
     To limit the visibility of variables and reduce the risk of errors,
     the word <b>procedure</b> may be used.
@@ -370,4 +379,4 @@ Product: 120
 </samp></pre>
   </li>
 
-</ul>
+</ol>
