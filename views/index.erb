@@ -4,3 +4,51 @@
   Personal website of user srgx. Various algorithms, programs and articles can be found there.
 </p>
 
+    <canvas id="myCanvas" style="margin-left: auto; margin-right: auto; margin-bottom: 10px; display: block;" >
+    </canvas>
+
+    <script>
+
+      const width = 400;
+      const height = 250;
+
+      const backColor = "purple";
+      const colorA = "lime";
+      const colorB = "red";
+
+      const stepA = 30;
+      const stepB = 17;
+
+      function drawPath(ctx,color,step,position){
+
+        if(0!=position){ position = height; }
+
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(0, position);
+
+        let x = 0;
+        while(x < width){
+          x += step;
+          position = height == position ? 0 : height;
+          ctx.lineTo(x, position);
+          ctx.stroke();
+        }
+
+      }
+
+      function main(){
+
+        let c = document.getElementById("myCanvas");
+        c.style.backgroundColor = backColor;
+        c.width = width; c.height = height;
+        let ctx = c.getContext("2d");
+
+        drawPath(ctx,colorA,stepA,0);
+        drawPath(ctx,colorB,stepB,1);
+
+      }
+
+      main();
+
+    </script>
