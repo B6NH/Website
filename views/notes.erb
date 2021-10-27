@@ -1,0 +1,349 @@
+<h1>Notes</h1>
+
+<hr>
+
+<h2>Vectors and Matrices</h2>
+
+<h4>Basics</h4>
+<ul>
+  <li>Vectors describe the position or displacement of objects in space.</li>
+  <li>They are usually indicated by a bold lowercase letter,
+      such as <b>b</b> or <b>u</b>.</li>
+  <li>In two dimensions, a vector represents a displacement in the <var>x</var>
+      and <var>y</var> axis directions.</li>
+  <li>The <var>x</var> and <var>y</var> values are called
+      <strong>vector components</strong>.</li>
+  <li><strong>Magnitude</strong> of vector (<var>x</var>,<var>y</var>) is equal to
+      &radic;(<var>x</var><sup>2</sup> + <var>y</var><sup>2</sup>).</li>
+  <li>Vector of magnitude(length) 1 is called <strong>unit vector</strong> and is equal to
+      (cos(<var>&alpha;</var>),sin(<var>&alpha;</var>)) for angle &alpha;.</li>
+  <li>Unit vector is sometimes called <strong>normalized vector</strong>.</li>
+  <li>Vector with starting point is called <strong>position vector</strong>.</li>
+  <li>Any point in 2D space can be represented by any 2 non-parallel vectors
+      called basis vectors.</li>
+  <li>If vectors are perpendicular (orthogonal) and of magnitude 1 (unit vectors),
+      it is <strong>orthonormal basis</strong>.</li>
+  <li>A different basis may be used to simplify calculations.</li>
+</ul>
+
+
+<h4>Vector operations</h4>
+<ul>
+  <li>To <strong>add</strong> or <strong>subtract</strong> vectors,
+      perform appropriate operation on their components:
+      (2,5) + (4,3) = (6,8).</li>
+  <li>To <strong>multiply</strong> vector by <strong>scalar</strong>,
+      multiply each component: 3 * (7,9) = (21,27).</li>
+  <li>To get <strong>unit vector</strong>, divide vector by its magnitude |<b>v</b>|.</li>
+  <li><strong>Negative</strong> of vector <b>v</b> is denoted by -<b>v</b> and
+      is pointing in the other direction:
+      <b>v</b> = (2,-3), -<b>v</b> = (-2,3).</li>
+  <li>To find the vector lying between two points, subtract their position vectors
+      from each other. If <b>a</b> = (5,4) and <b>b</b> = (2,3),
+      <b>c</b> = <b>a</b> - <b>b</b> = (3,1). Vector <b>c</b> is directed from
+      <b>b</b> to <b>a</b>.</li>
+  <li>To find <strong>normal vector</strong>(perpendicular to some other vector),
+      swap components and negate one of them. If <b>m</b> = (8,2) its perpendicular
+      vector is equal to (-2,8) or (2,-8).</li>
+  <li>Sum of products of vector components is called
+      <strong>dot/scalar product</strong> and is denoted by the dot symbol:
+      (5,4) &middot; (2,7) = 5 * 2 + 4 * 7 = 38.</li>
+  <li>If <b>u</b> is any unit vector, dot product <b>u</b> &middot; <b>v</b>
+      determines the component of <b>v</b> in the direction of <b>u</b>.</li>
+  <li>The <strong>cross product</strong> of two 3D vectors is a vector
+      perpendicular to both of them.</li>
+  <li>To calculate the cross product, proceed in a similar way as for
+      calculating matrix determinant. Each component of resulting vector
+      is obtained by multiplying and subtracting the appropriate values
+      from the matrix.</li>
+</ul>
+
+<h4>Matrices</h4>
+<ul>
+  <li>A <strong>matrix</strong> is a type of two-dimensional array in which values
+      are arranged in rows and columns.</li>
+  <li>Symbols such as <b>M</b> or <b>G</b> are typically used to denote matrices.</li>
+  <li>To determine the number of rows and columns in a matrix,
+      the &#10005; sign is used: 5 &#10005; 6.</li>
+  <li>A matrix in which rows and columns have been swapped is
+      called a <strong>transposition matrix</strong>.</li>
+  <li>After transposition, the values lying on the <strong>leading diagonal</strong> of
+      the matrix (from the upper left corner) do not change.</li>
+  <li>One of the key values of a matrix is its <strong>determinant</strong>,
+      denoted by the symbol |<b>M</b>|.</li>
+</ul>
+
+<h4>Matrix operations</h4>
+<ul>
+  <li><strong>Determinant</strong> of a 2 &#10005; 2 matrix with rows
+      [<var>a</var>,<var>b</var>] and [<var>c</var>,<var>d</var>]
+      is equal to <var>a</var><var>d</var> - <var>b</var><var>c</var>.
+      Determinants of larger matrices are calculated using a recursive algorithm.</li>
+  <li><strong>Addition</strong> and <strong>subtraction</strong> as well as
+      <strong>multiplication</strong> of matrices by scalar is based on performing
+      actions on the corresponding components of the matrix.</li>
+  <li><strong>Matrix multiplication</strong> involves calculating the
+      <strong>dot product</strong> of the rows of the first matrix and
+      the columns from the second matrix. Result of this operation is
+      a new matrix with different dimensions.</li>
+  <li>Matrix multiplication is not commutative. Order of arguments matters.</li>
+  <li><strong>Identity matrix</strong> is a matrix that, when multiplied by other matrices
+      does not change them.</li>
+  <li><strong>Inverse matrix</strong> is a matrix that when multiplied by another
+      matrix results in an identity matrix.</li>
+  <li><strong>Simultaneous equations</strong> can be solved using matrices.</li>
+  <li>Matrices can represent <strong>transformations</strong>:
+    <ul>
+      <li>Scaling</li>
+      <li>Reflection</li>
+      <li>Rotation</li>
+      <li>Shear</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>Physics</h2>
+
+<h4>Acceleration</h4>
+<ul>
+  <li><strong>Acceleration</strong> is a value that shows how velocity
+      of an object changes. It is vector quantity.
+  </li>
+  <li>If <b>u</b> is initial velocity and <b>a</b> is acceleration,
+      after <var>t</var> seconds values of <strong>velocity</strong> and
+      <strong>displacement</strong> are:
+    <ul>
+      <li><b>v</b> = <b>u</b> + <b>a</b><var>t</var>.</li>
+      <li><b>s</b> = <b>u</b><var>t</var> + 1/2<b>a</b><var>t</var><sup>2</sup>.</li>
+    </ul>
+  </li>
+  <li>If only the initial and final velocities are known:
+      <b>s</b> = <var>t</var>(<b>u</b> + <b>v</b>) / 2.
+  </li>
+  <li>Acceleration of the Earth |<b>g</b>| is approximately
+      9.8 <var>m</var>/<var>s</var><sup>2</sup>.</li>
+</ul>
+
+<h4>Energy</h4>
+<ul>
+  <li>Its value is expressed in joules or calories.</li>
+  <li>Total energy of an isolated system remains constant.</li>
+  <li><strong>Kinetic energy</strong> depends on mass and speed of the object:
+      <var>e</var> = 1/2 <var>m</var>|<b>v</b>|<sup>2</sup>.</li>
+  <li><strong>Gravitational potential energy</strong> (g.p.e) is related to Earth
+      gravity and the relative height at which object is located:
+      <var>e</var> = <var>m</var><var>h</var>|<b>g</b>|.</li>
+</ul>
+
+<h4>Momentum</h4>
+<ul>
+  <li>It is the product of the mass and velocity of a moving object:
+      <b>p</b> = <var>m</var><b>v</b>.</li>
+  <li>It is conserved. A fired cannonball and a cannon moving due to
+      recoil have different kinetic energy but the same momentum.</li>
+</ul>
+
+<h4>Force</h4>
+<ul>
+  <li>The unit of force is Newton (1kg * m/s<sup>2</sup>).</li>
+  <li>It is the product of a body's mass and its acceleration:
+      <b>F</b> = <var>m</var><b>a</b>.</li>
+</ul>
+
+<h4>Gravitation</h4>
+<ul>
+  <li><strong>Gravitational constant</strong>: <var>G</var> = 6.673000 * 10
+      <sup>-11</sup> m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>.
+  </li>
+  <li><strong>Force due to gravity</strong>:
+      <var>F</var> =
+      <var>G</var><var>m</var><sub>1</sub><var>m</var><sub>2</sub>/<var>d</var><sup>2</sup>.
+  </li>
+</ul>
+
+<h4>Friction</h4>
+<ul>
+  <li><strong>Frictional force</strong> is the product of the force perpendicular
+      to the motion of the object and the coefficient of friction, denoted by μ.
+  </li>
+  <li>If the body lies on a slope at an angle <var>θ</var> and vertical weight force
+      <var>W</var> acts on it: <var>F</var> = μ<var>W</var>cos(<var>θ</var>).</li>
+</ul>
+
+<hr>
+
+<h2>Discrete Mathematics</h2>
+
+<table>
+
+  <caption>Symbols</caption>
+
+  <tr>
+    <td><var>p</var> and <var>q</var></td>
+    <td><var>p</var> &and; <var>q</var></td>
+  </tr>
+
+  <tr>
+    <td><var>p</var> or <var>q</var></td>
+    <td><var>p</var> &or; <var>q</var></td>
+  </tr>
+
+  <tr>
+    <td>not <var>p</var></td>
+    <td>&not;<var>p</var></td>
+  </tr>
+
+  <tr>
+    <td><var>p</var> or <var>q</var> but not both</td>
+    <td><var>p</var> &oplus; <var>q</var></td>
+  </tr>
+
+  <tr>
+    <td><var>P</var> is logically equivalent to <var>Q</var></td>
+    <td><var>P</var> &equiv; <var>Q</var></td>
+  </tr>
+
+  <tr>
+    <td>if <var>p</var> then <var>q</var></td>
+    <td><var>p</var> &rarr; <var>q</var></td>
+  </tr>
+
+  <tr>
+    <td><var>p</var> if and only if <var>q</var></td>
+    <td><var>p</var> &harr; <var>q</var></td>
+  </tr>
+
+  <tr>
+    <td>for all <var>x</var></td>
+    <td>&forall;<var>x</var></td>
+  </tr>
+
+  <tr>
+    <td>there exists <var>m</var></td>
+    <td>&exist;<var>m</var></td>
+  </tr>
+
+  <tr>
+    <td><var>a</var> belongs to <var>B</var></td>
+    <td><var>a</var> &isin; <var>B</var></td>
+  </tr>
+
+  <tr>
+    <td><var>A</var> is subset of <var>B</var></td>
+    <td><var>A</var> &sube; <var>B</var></td>
+  </tr>
+
+  <tr>
+    <td><var>A</var> is proper subset of <var>B</var></td>
+    <td><var>A</var> &sub; <var>B</var></td>
+  </tr>
+
+</table>
+
+<h4>Variables</h4>
+<dl>
+  <dt><var>x</var></dt>
+  <dd>Symbol <var>x</var> is placeholder</dd>
+  <dt>5<var>x</var> + 2 = <var>x</var><sup>3</sup></dt>
+  <dd>
+    Is there a number <var>x</var> that when multiplied
+    times 5 and added 2 is equal to its cube?
+  </dd>
+</dl>
+
+<h4>Statements</h4>
+<dl>
+  <dt>Universal statement</dt>
+  <dd>Property is true for all elements in set.</dd>
+  <dt>Conditional statement</dt>
+  <dd>If one property is true another must also be true.</dd>
+  <dt>Existential statement</dt>
+  <dd>The property is true for at least one thing</dd>
+</dl>
+
+<h4>Statement examples</h4>
+<dl>
+  <dt>For all cats <var>x</var>, if <var>x</var> is black then it belongs to a witch</dt>
+  <dd>Universal conditional statement</dd>
+  <dt>For all witches <var>x</var>, there is black cat <var>y</var> belonging
+      to witch <var>x</var></dt>
+  <dd>Universal existential statement</dd>
+  <dt>There is a witch who is at least as powerful as all the other witches</dt>
+  <dd>Existential universal statement</dd>
+</dl>
+
+
+<h4>Sets</h4>
+
+<ul>
+  <li>
+    Sets are collections of elements. They can be created using
+    <b>set-roster</b> notation. For example, to create a set D containing
+    numbers 5, 8 and 12: D = {5, 8, 12}.
+  </li>
+
+  <li>
+    Another way to create sets is <b>set-builder</b> notation. To get a set of integers
+    between 6 and 12 one can write: A = { <var>x</var> &isin; <b>Z</b> | 6 < <var>x</var> < 12 },
+    which reads "set of all elements <var>x</var> in <b>Z</b> such that <var>x</var>
+    is greater than 6 and less than 12".
+  </li>
+
+  <li>
+    Some sets in mathematics have their own symbols:
+    <ul>
+      <li><b>R</b> - real numbers</li>
+      <li><b>Z</b> - integers</li>
+      <li><b>Q</b> - rational numbers</li>
+    </ul>
+  </li>
+
+  <li>
+    If all elements of a set are elements of another set,
+    the first set is called a <b>subset</b>. If A = {3, 6} and
+    B = {2, 3, 5, 6, 8}, then A is a subset of B which
+    is written as A &sube; B.
+  </li>
+
+  <li>
+    An <b>ordered pair</b> (a,b) is a pair of objects whose order matters.
+    That means that the pair (a,b) is equal to the pair (c,d) only
+    if a = c and b = d.
+  </li>
+
+  <li>
+    <b>Cartesian product</b> of sets A and B is the set of all ordered
+    pairs such that the first element of the pair is from set A and
+    the second element is from set B. If A = {1, 2} and B = {3, 4}
+    then A &times; B = {{1, 3}, {1, 4}, {2, 3}, {2, 4}}.
+  </li>
+
+  <li>
+    <b>Relation</b> R from A to B is a subset of the cartesian product A &times; B.
+    If (x,y) &isin; R, the notation x R y can be used. Sets A and B are called
+    domain and co-domain respectively.
+  </li>
+
+</ul>
+
+<h4>Functions</h4>
+
+<ul>
+
+  <li>
+    A <b>function</b> F from set A to set B is a relation in which the domain is set A
+    and the co-domain is set B. Each element from the first set has a unique
+    corresponding element from the second set.
+  </li>
+
+  <li>
+    Functions can be thought of as machines with an input where values are placed
+    and an output that returns a result.
+  </li>
+
+</ul>
+
+<script>
+</script>
