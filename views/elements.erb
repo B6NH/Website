@@ -214,11 +214,7 @@
 
   // ------------------------------------------------------
 
-  const electrons = [2, 2, 6, 2,
-                     6, 2, 10, 6,
-                     2, 10, 6, 2,
-                     14, 10, 6, 2,
-                     14, 10, 6];
+  const numElectrons = createNumElectrons();
 
   const orbitals = ["1s","2s","2p","3s",
                     "3p","4s","3d","4p",
@@ -277,6 +273,17 @@
 
   // ------------------------------------------------------
 
+  function createNumElectrons(){
+    let numElectrons = new Map();
+    let symbols = ['s','p','d','f'];
+    let e = 2;
+    for(let i=0;i<symbols.length;i++){
+      numElectrons.set(symbols[i], e);
+      e += 4;
+    }
+    return numElectrons;
+  }
+
   function addEvents(){
     document.querySelector('#maintable').addEventListener('click', (ev) => {
       const x = ev.target.cellIndex;
@@ -318,21 +325,25 @@
 
   }
 
+  function electronsOnOrbital(orbital){
+    return numElectrons.get(orbital.slice(-1));
+  }
+
   function electronConfiguration(n){
 
     // Sum electrons
     let index = 0; let sum = 0;
-    while(sum < n){ sum += electrons[index++]; }
+    while(sum < n){ sum += electronsOnOrbital(orbitals[index++]); }
 
     // Add complete orbitals
     const lastIndex = index - 1;
     let conf = [];
     for (let i = 0; i < lastIndex; i++) {
-      conf.push(orbitals[i] + electrons[i]);
+      conf.push(orbitals[i] + electronsOnOrbital(orbitals[i]));
     }
 
     // Add last orbital
-    conf.push(orbitals[lastIndex] + (electrons[lastIndex] - sum + n));
+    conf.push(orbitals[lastIndex] + (electronsOnOrbital(orbitals[lastIndex]) - sum + n));
 
     // Sort orbitals
     return orbSort(conf);
