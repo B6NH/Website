@@ -14,6 +14,7 @@
   <li><a href="#arrays">Arrays</a></li>
   <li><a href="#functions">Functions</a></li>
   <li><a href="#parameters">Function parameters</a></li>
+  <li><a href="#stack">Stack</a></li>
 </ol>
 
 <ol>
@@ -360,7 +361,7 @@ double_show: procedure
   say 'Global variable in procedure:' global_var
   return
 
-/* An 'explicit' instruction to make certain variables visible. */
+/* Instruction 'expose' can make some variables visible inside function */
 multiply_global: procedure expose global_var global_var2
   arg a, b
   say 'Variables inside multiply:' global_var global_var2 global_var3
@@ -376,6 +377,62 @@ Global variable in procedure: GLOBAL_VAR
 ---
 Variables inside multiply: 20 30 GLOBAL_VAR3
 Product: 120
+</samp></pre>
+  </li>
+
+  <li id="stack">
+    Rexx has data structure called <b>stack</b>.
+    It can be used as LIFO or FIFO queue.
+    <pre><code>/* Add elements to stack */
+push 12
+push 34
+push 55
+
+/* Display stack size with queue() function */
+call showStackSize
+
+/* Display stack contents */
+say 'Stack:'
+do i = 1 to queued()
+  pull variable
+  say variable
+end
+
+/* After reading data, stack is empty
+   Another pull instruction would take
+   data from the standard input */
+call showStackSize
+
+/* The 'queue' instruction allows to create a FIFO queue */
+queue 2
+queue 4
+queue 8
+queue 16
+
+/* Elements are displayed in the same order */
+say 'Queue:'
+do i = 1 to queued()
+  pull variable
+  say variable
+end
+
+exit 0
+
+showStackSize: procedure
+  say 'Number of elements on the stack:' queued()
+  return
+</code></pre>
+<pre class="coutput"><samp>Number of elements on the stack: 3
+Stack:
+55
+34
+12
+Number of elements on the stack: 0
+Queue:
+2
+4
+8
+16
 </samp></pre>
   </li>
 
