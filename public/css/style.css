@@ -58,3 +58,6 @@ pre {
   font-size: 15px;
 }
 
+sup {
+  pointer-events: none;
+}
