@@ -63,7 +63,7 @@ end
   }
 
   function subVectors(vecA,vecB){
-    let result = Array(3);
+    const result = Array(3);
     for(let i=0;i<3;i++){
       result[i] = vecA[i] - vecB[i];
     }
@@ -78,9 +78,9 @@ end
 
   function p3dTo2d(point,observerPosition,observerVector,
                   observerUp,fieldOfView,h){
-    let observerRight = crossProduct(observerUp,observerVector);
-    let v = subVectors(point,observerPosition);
-    let z = dotProduct(v,observerVector);
+    const observerRight = crossProduct(observerUp,observerVector);
+    const v = subVectors(point,observerPosition);
+    const z = dotProduct(v,observerVector);
     d = h * Math.tan(fieldOfView);
     x = d * dotProduct(v,observerRight) / z
     y = d * dotProduct(v,observerUp) / z
@@ -98,44 +98,69 @@ end
   }
 
   function points3dToPoints2d(points3d,obs,obsVec,obsUp,fov,h){
-    let points2d = Array(points3d.length);
+    const points2d = Array(points3d.length);
     for(let i=0;i<points3d.length;i++){
-      let p2d = p3dTo2d(points3d[i],obs,obsVec,obsUp,fov,h);
+      const p2d = p3dTo2d(points3d[i],obs,obsVec,obsUp,fov,h);
       p2d[0] += midX; p2d[1] += midY;
       points2d[i] = p2d;
     }
     return points2d;
   }
 
+  function connectPlanes(ctx,plane1,plane2){
+    for(let i=0;i<4;i++){
+      ctx.beginPath();
+      ctx.moveTo(plane1[i][0],plane1[i][1]);
+      ctx.lineTo(plane2[i][0],plane2[i][1]);
+      ctx.stroke();
+    }
+  }
+
   function main(){
 
-    let ca = document.getElementById("mainCanvas");
-    let ctx = ca.getContext("2d");
+    const ca = document.getElementById("mainCanvas");
+    const ctx = ca.getContext("2d");
 
     ca.width = width;
     ca.height = height;
 
-    let observer = [0,15,-15];
-    let observerVector = [0,0,1];
-    let observerUp = [0,1,0];
-    let fieldOfView = 0.78;
-    let h = height / 2;
+    const observer = [0,15,-15];
+    const observerVector = [0,0,1];
+    const observerUp = [0,1,0];
+    const fieldOfView = 0.78;
+    const h = height / 2;
 
-    const points3d = [[0,0,20],[0,0,40],[20,0,40],[20,0,20]];
+    const cubeHeight = 20;
+    const bottom3d = [[10,0,20],[10,0,40],[30,0,40],[30,0,20]];
+    const top3d = bottom3d.map(function(pt) {
+      return [ pt[0], pt[1] + cubeHeight, pt[2] ];
+    });
 
-    let points2d =
-      points3dToPoints2d(points3d,observer,observerVector,
+    const bottom2d =
+      points3dToPoints2d(bottom3d,observer,observerVector,
                          observerUp,fieldOfView,h);
 
-    draw2dPoints(ctx,points2d);
+    const top2d =
+      points3dToPoints2d(top3d,observer,observerVector,
+                         observerUp,fieldOfView,h);
+
+    // Draw cube bottom
+    draw2dPoints(ctx,bottom2d);
+
+    // Draw cube top
+    draw2dPoints(ctx,top2d);
+
+    // Connect sides
+    connectPlanes(ctx,top2d,bottom2d);
+
     drawCenter(ctx);
 
   }
 
-  let t0 = performance.now();
+  const t0 = performance.now();
   main();
-  let t1 = performance.now();
-  let t = t1 - t0;
+  const t1 = performance.now();
+  const t = t1 - t0;
 
   console.log(Math.floor(1000/t) + " fps");
   console.log(t + "ms");

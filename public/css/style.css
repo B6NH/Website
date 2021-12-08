@@ -45,6 +45,7 @@ td {
 #maintable td {
   padding: 1px;
   font-size:13.6px;
+  cursor: default;
 }
 
 pre {
